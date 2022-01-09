@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react'
 
-import DynamicTable from './../table'
+import DynamicTable from './../table/table'
 import DynamicModal from './../modal'
 
 import { Header, Row } from './../../mock/pet'
@@ -8,6 +8,7 @@ import { DesertHeader, DesertRow } from './../../mock/dessert'
 
 import IconButton from '@mui/material/IconButton'
 import CampaignIcon from '@mui/icons-material/Campaign'
+import Stack from '@mui/material/Stack'
 
 import {
   HeaderCol,
@@ -27,29 +28,32 @@ function App(): React.ReactElement {
   )
 
   // function
-  const handleModalVisibility = (toggle: boolean, modalContent?: any) => () => {
-    if (toggle) {
-      setModalContent(modalContent)
-      setModalIsOpen(true)
-    } else {
-      setModalIsOpen(false)
+  const handleModalVisibility =
+    (toggle: boolean, modalContent?: unknown) => () => {
+      if (toggle) {
+        setModalContent(modalContent as string)
+        setModalIsOpen(true)
+      } else {
+        setModalIsOpen(false)
+      }
     }
-  }
-  function handlePetRowCol(row: RowType, headerCol: HeaderCol) {
-    switch (headerCol.key) {
+  function handlePetRowCol(row: unknown, headerCol: unknown) {
+    switch ((headerCol as HeaderCol).key) {
       case 'name':
-        return row.name
+        return (row as RowType).name
       case 'species':
-        return row.species
+        return (row as RowType).species
       case 'age':
-        return row.age
+        return (row as RowType).age
       case 'action':
         return (
           <IconButton
-            aria-label="alert pet name"
+            aria-label="display pet name"
             onClick={handleModalVisibility(
               true,
-              `${row.name} is a ${row.age}-year-old ${row.species}`
+              `${(row as RowType).name} is a ${(row as RowType).age}-year-old ${
+                (row as RowType).species
+              }.`
             )}
           >
             <CampaignIcon />
@@ -59,36 +63,44 @@ function App(): React.ReactElement {
         return ''
     }
   }
-  function handleDesertRowCol(row: DesertRowType, headerCol: DesertHeaderType) {
-    switch (headerCol.key) {
+  function handleDesertRowCol(row: unknown, headerCol: unknown) {
+    switch ((headerCol as DesertHeaderType).key) {
       case 'dessert':
-        return row.dessert
+        return (row as DesertRowType).dessert
       case 'calories':
-        return row.calories
+        return (row as DesertRowType).calories
       case 'fat':
-        return row.fat
+        return (row as DesertRowType).fat
       case 'carbs':
-        return row.carbs
+        return (row as DesertRowType).carbs
       case 'protein':
-        return row.protein
+        return (row as DesertRowType).protein
       default:
         return
     }
+  }
+  function handleDesertRowUrl(row: unknown) {
+    return `https://www.google.com/search?q=${(row as DesertRowType).dessert}`
   }
 
   // view
   return (
     <div className="App">
-      <DynamicTable
-        TableHeaderCol={Header}
-        TableRow={Row}
-        renderRowCol={handlePetRowCol}
-      />
-      <DynamicTable
-        TableHeaderCol={DesertHeader}
-        TableRow={DesertRow}
-        renderRowCol={handleDesertRowCol}
-      />
+      <Stack spacing={2}>
+        <DynamicTable
+          TableHeaderCol={Header}
+          TableRow={Row}
+          renderRowCol={handlePetRowCol}
+          isTable
+        />
+        <DynamicTable
+          TableHeaderCol={DesertHeader}
+          TableRow={DesertRow}
+          renderRowCol={handleDesertRowCol}
+          renderRowUrl={handleDesertRowUrl}
+          isLink
+        />
+      </Stack>
       <DynamicModal
         modalIsOpen={modalIsOpen}
         handleModalVisibility={handleModalVisibility}

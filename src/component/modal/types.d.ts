@@ -1,5 +1,5 @@
 export interface DynamicModalProps {
   modalIsOpen: boolean
-  handleModalVisibility: (toggle: boolean, modalContent?: any) => () => void
+  handleModalVisibility: (toggle: boolean, modalContent?: unknown) => () => void
   modalContent: any
 }
