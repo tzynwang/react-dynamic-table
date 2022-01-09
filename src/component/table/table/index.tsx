@@ -1,49 +1,47 @@
 import React, { memo } from 'react'
 
+import DynamicTableRow from '../tableRow'
+
 import Box from '@mui/material/Box'
 
 import { DynamicTableProps } from './types'
+import './style.css'
 
 function DynamicTable(props: DynamicTableProps): React.ReactElement {
-  const { TableHeaderCol, TableRow, renderRowCol } = props
+  const {
+    TableHeaderCol,
+    TableRow,
+    renderRowCol,
+    renderRowUrl,
+    isLink,
+    isTable
+  } = props
   return (
-    <React.Fragment>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          height: '48px',
-          backgroundColor: 'orange'
-        }}
-      >
+    <div>
+      <div className="tableHeader">
         {TableHeaderCol.map((headerCol, index) => (
           <Box key={index} sx={{ ...headerCol.style }}>
             {headerCol.label}
           </Box>
         ))}
-      </Box>
-      <Box sx={{ marginBottom: '1rem' }}>
+      </div>
+      <div>
         {TableRow.map((row, index) => (
-          <Box
+          <DynamicTableRow
             key={index}
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              height: '48px',
-              backgroundColor: '#eee'
-            }}
+            isLink={isLink}
+            isTable={isTable}
+            url={renderRowUrl ? renderRowUrl(row) : undefined}
           >
             {TableHeaderCol.map((headerCol, index) => (
               <Box key={index} sx={{ ...headerCol.style }}>
                 {renderRowCol(row, headerCol)}
               </Box>
             ))}
-          </Box>
+          </DynamicTableRow>
         ))}
-      </Box>
-    </React.Fragment>
+      </div>
+    </div>
   )
 }
 
