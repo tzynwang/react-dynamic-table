@@ -1,28 +1,4 @@
-interface Style {
-  flex: string
-  paddingLeft?: string
-}
+import { HeaderCol, Row } from './../../model/pet'
+import { DesertHeader, DesertRow } from './../../model/dessert'
 
-export interface HeaderCol {
-  key: string
-  label: string
-  style: Style
-}
-
-export interface Row {
-  name: string
-  species: string
-  age: number
-}
-
-type DesertTableKey = 'dessert' | 'calories' | 'fat' | 'carbs' | 'protein'
-
-export interface DesertHeader {
-  key: DesertTableKey
-  label: string
-  style: Style
-}
-
-export type DesertRow = {
-  [key in DesertTableKey]: string | number
-}
+export { HeaderCol, Row, DesertHeader, DesertRow }
