@@ -8,7 +8,11 @@ export const Header: HeaderCol[] = [
   },
   { key: 'species', label: 'species', style: { flex: '0 0 20vw' } },
   { key: 'age', label: 'age', style: { flex: '0 0 10vw' } },
-  { key: 'action', label: 'action', style: { flex: '0 0 10vw' } }
+  {
+    key: 'action',
+    label: 'action',
+    style: { flex: '0 0 10vw', opacity: 0 }
+  }
 ]
 
 export const Row: RowType[] = [

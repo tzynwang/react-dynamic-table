@@ -1,4 +1,3 @@
-export interface Style {
-  flex: string
-  paddingLeft?: string
+export type Style = {
+  [key: string]: string | number
 }
