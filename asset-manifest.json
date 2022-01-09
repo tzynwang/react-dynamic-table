@@ -1,12 +1,15 @@
 {
   "files": {
-    "main.js": "/react-dynamic-table/static/js/main.53a297ce.js",
+    "main.css": "/react-dynamic-table/static/css/main.249d45ed.css",
+    "main.js": "/react-dynamic-table/static/js/main.620bef74.js",
     "static/js/787.a1c02b2d.chunk.js": "/react-dynamic-table/static/js/787.a1c02b2d.chunk.js",
     "index.html": "/react-dynamic-table/index.html",
-    "main.53a297ce.js.map": "/react-dynamic-table/static/js/main.53a297ce.js.map",
+    "main.249d45ed.css.map": "/react-dynamic-table/static/css/main.249d45ed.css.map",
+    "main.620bef74.js.map": "/react-dynamic-table/static/js/main.620bef74.js.map",
     "787.a1c02b2d.chunk.js.map": "/react-dynamic-table/static/js/787.a1c02b2d.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.53a297ce.js"
+    "static/css/main.249d45ed.css",
+    "static/js/main.620bef74.js"
   ]
 }
