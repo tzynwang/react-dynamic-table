@@ -16,3 +16,7 @@
 .tableRow:hover {
   background-color: #ccc;
 }
+
+.tableRow:hover div {
+  opacity: 1;
+}
