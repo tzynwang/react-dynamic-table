@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react'
 
-import DynamicTable from './../table'
+import DynamicTable from './../table/table'
 import DynamicModal from './../modal'
 
 import { Header, Row } from './../../mock/pet'
@@ -8,6 +8,7 @@ import { DesertHeader, DesertRow } from './../../mock/dessert'
 
 import IconButton from '@mui/material/IconButton'
 import CampaignIcon from '@mui/icons-material/Campaign'
+import Stack from '@mui/material/Stack'
 
 import {
   HeaderCol,
@@ -75,20 +76,28 @@ function App(): React.ReactElement {
         return
     }
   }
+  function handleDesertRowUrl(row: unknown) {
+    return `https://www.google.com/search?q=${(row as DesertRowType).dessert}`
+  }
 
   // view
   return (
     <div className="App">
-      <DynamicTable
-        TableHeaderCol={Header}
-        TableRow={Row}
-        renderRowCol={handlePetRowCol}
-      />
-      <DynamicTable
-        TableHeaderCol={DesertHeader}
-        TableRow={DesertRow}
-        renderRowCol={handleDesertRowCol}
-      />
+      <Stack spacing={2}>
+        <DynamicTable
+          TableHeaderCol={Header}
+          TableRow={Row}
+          renderRowCol={handlePetRowCol}
+          isTable
+        />
+        <DynamicTable
+          TableHeaderCol={DesertHeader}
+          TableRow={DesertRow}
+          renderRowCol={handleDesertRowCol}
+          renderRowUrl={handleDesertRowUrl}
+          isLink
+        />
+      </Stack>
       <DynamicModal
         modalIsOpen={modalIsOpen}
         handleModalVisibility={handleModalVisibility}
