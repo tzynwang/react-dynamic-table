@@ -1,0 +1,18 @@
+.tableRow {
+  height: 48px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #eee;
+  /* remove <a> default style */
+  color: unset;
+  text-decoration: none;
+
+  transition: 0.2s;
+}
+
+.tableRow:hover {
+  background-color: #ccc;
+}
